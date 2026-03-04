@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:5173/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="./greenmind-anti-gravity_files/client"></script>
+
+    
+    <link rel="icon" type="image/svg+xml" href="http://localhost:5173/vite.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>greenmind-anti-gravity</title>
+  <style type="text/css" data-vite-dev-id="C:/Users/Dell/OneDrive/Desktop/GreenMind3/src/index.css">@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Orbitron:wght@400;500;700&display=swap');
+
+:root {
+  /* Core Palette */
+  --bg-deep: #050510;
+  --bg-panel: rgba(20, 20, 35, 0.6);
+  --bg-panel-hover: rgba(30, 30, 50, 0.7);
+  
+  --primary-neon: #00f0ff;
+  --secondary-neon: #7000ff;
+  --success-neon: #00ff9d;
+  --warning-neon: #ffbd00;
+  --error-neon: #ff0055;
+  
+  --text-main: #e0e0e0;
+  --text-dim: #a0a0b0;
+  
+  /* Glassmorphism */
+  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  --backdrop-blur: blur(12px);
+  
+  /* Spacing & Radius */
+  --radius-lg: 16px;
+  --radius-md: 8px;
+  --container-padding: 2rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(112, 0, 255, 0.15), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(0, 240, 255, 0.1), transparent 25%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron', sans-serif;
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-neon);
+}
+
+/* Utilities */
+
+.glass-panel {
+  background: var(--bg-panel);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: var(--backdrop-blur);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel:hover {
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+  border-color: rgba(0, 240, 255, 0.3);
+}
+
+.neon-text {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+  color: var(--primary-neon);
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.full-screen {
+  width: 100vw;
+  height: 100vh;
+}
+</style><style type="text/css" data-vite-dev-id="C:/Users/Dell/OneDrive/Desktop/GreenMind3/src/components/Layout/Layout.css">.app-container {
+    display: flex;
+    height: 100vh;
+    padding: var(--radius-lg);
+    gap: var(--radius-lg);
+    overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    backdrop-filter: blur(20px);
+    /* Enhance blur for sidebar */
+}
+
+.logo-container {
+    padding: 1.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.logo-sub {
+    color: var(--primary-neon);
+    margin-left: 2px;
+}
+
+.nav-menu {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-family: 'Orbitron', sans-serif;
+    /* Tech feel for nav */
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: var(--radius-md);
+    position: relative;
+    text-align: left;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-item.active {
+    color: var(--primary-neon);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+}
+
+.active-indicator {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 70%;
+    background-color: var(--primary-neon);
+    box-shadow: 0 0 8px var(--primary-neon);
+    border-radius: 4px 0 0 4px;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    font-family: 'Orbitron', sans-serif;
+}
+
+.status-ok {
+    color: var(--success-neon);
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--radius-lg);
+    height: 100%;
+    min-width: 0;
+    /* Prevent overflow issues */
+}
+
+.top-bar {
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.page-title {
+    font-size: 1.5rem;
+    color: var(--text-main);
+}
+
+.time-display {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary-neon);
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+}
+
+.content-area {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 2rem;
+    /* Scrollbar styling for content area */
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Dell/OneDrive/Desktop/GreenMind3/src/components/Dashboard/Dashboard.css">.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.controls-section {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+}
+
+/* Metric Card */
+.metric-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
+}
+
+.metric-card.warning {
+    border-color: rgba(255, 189, 0, 0.5);
+}
+
+.metric-card.critical {
+    border-color: rgba(255, 0, 85, 0.5);
+    box-shadow: 0 0 15px rgba(255, 0, 85, 0.1);
+}
+
+.metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.metric-title {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+.metric-icon {
+    color: var(--primary-neon);
+    opacity: 0.8;
+}
+
+.metric-body {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.metric-value {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-main);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.metric-unit {
+    font-size: 1rem;
+    color: var(--text-dim);
+    margin-left: 4px;
+    font-weight: 400;
+}
+
+.metric-trend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.metric-trend.up {
+    color: var(--success-neon);
+}
+
+.metric-trend.down {
+    color: var(--error-neon);
+}
+
+.metric-trend.stable {
+    color: var(--text-dim);
+}
+
+.metric-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    box-shadow: 0 0 5px currentColor;
+}
+
+.status-indicator.normal {
+    background-color: var(--success-neon);
+    color: var(--success-neon);
+}
+
+.status-indicator.warning {
+    background-color: var(--warning-neon);
+    color: var(--warning-neon);
+}
+
+.status-indicator.critical {
+    background-color: var(--error-neon);
+    color: var(--error-neon);
+}
+
+.status-text {
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+}
+
+/* System Controls */
+.system-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.control-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.control-btn {
+    flex: 1;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-main);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.control-btn.active.start {
+    background: rgba(0, 255, 157, 0.1);
+    border-color: var(--success-neon);
+    color: var(--success-neon);
+    box-shadow: 0 0 15px rgba(0, 255, 157, 0.2);
+}
+
+.control-btn.stop:hover {
+    border-color: var(--error-neon);
+    color: var(--error-neon);
+    box-shadow: 0 0 10px rgba(255, 0, 85, 0.2);
+}
+
+.system-log {
+    height: 200px;
+    overflow-y: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--primary-neon);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(0, 240, 255, 0.1);
+}
+
+.log-entry {
+    margin-bottom: 4px;
+    opacity: 0.8;
+}
+
+.log-time {
+    opacity: 0.5;
+    margin-right: 8px;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Dell/OneDrive/Desktop/GreenMind3/src/components/Monitoring/Monitoring.css">.monitoring-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 100%;
+}
+
+.feed-grid {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 1.5rem;
+    flex: 1;
+    min-height: 0;
+}
+
+.camera-feed {
+    position: relative;
+    background: #000;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.main-feed {
+    height: 100%;
+    min-height: 400px;
+    background: radial-gradient(circle at center, #112, #000);
+}
+
+.side-feeds {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.small-feed {
+    flex: 1;
+    min-height: 150px;
+    background: radial-gradient(circle at center, #121, #000);
+}
+
+.feed-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 15px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+}
+
+.cam-id {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    color: var(--primary-neon);
+}
+
+.rec-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--error-neon);
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.rec-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--error-neon);
+    border-radius: 50%;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.feed-content {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feed-content.small-placeholder {
+    color: var(--warning-neon);
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.1em;
+}
+
+/* Simulated Viz Elements */
+.crosshair {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+}
+
+.crosshair::before,
+.crosshair::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.crosshair::before {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+}
+
+.crosshair::after {
+    left: 50%;
+    top: 0;
+    height: 100%;
+    width: 1px;
+}
+
+.analyzing-box {
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    width: 150px;
+    height: 100px;
+    border: 1px dashed var(--success-neon);
+    padding: 5px;
+    color: var(--success-neon);
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+}
+
+.scan-line {
+    width: 100%;
+    height: 2px;
+    background: var(--success-neon);
+    opacity: 0.5;
+    animation: scan 2s infinite linear;
+}
+
+@keyframes scan {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(90px);
+    }
+}
+
+.interference-lines {
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 255, 0, 0.05) 3px);
+    pointer-events: none;
+}
+
+.feed-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 15px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: var(--text-dim);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.icon-btn {
+    margin-left: auto;
+    cursor: pointer;
+    color: var(--text-main);
+}
+
+.icon-btn:hover {
+    color: var(--primary-neon);
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Dell/OneDrive/Desktop/GreenMind3/src/components/AI/AI.css">.ai-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.ai-header-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.stat-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.neon-purple {
+    color: var(--secondary-neon);
+    text-shadow: 0 0 10px rgba(112, 0, 255, 0.5);
+}
+
+.neon-success {
+    color: var(--success-neon);
+    text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+}
+
+.neon-blue {
+    color: var(--primary-neon);
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
+
+.ai-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.alerts-panel,
+.prediction-panel {
+    min-height: 300px;
+}
+
+.icon-gap {
+    margin-right: 8px;
+    vertical-align: bottom;
+    color: var(--warning-neon);
+}
+
+.alert-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.alert-item {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.alert-item.warning {
+    border-left: 3px solid var(--warning-neon);
+    background: rgba(255, 189, 0, 0.05);
+}
+
+.alert-item.success {
+    border-left: 3px solid var(--success-neon);
+    background: rgba(0, 255, 157, 0.05);
+}
+
+.alert-item.info {
+    border-left: 3px solid var(--primary-neon);
+    background: rgba(0, 240, 255, 0.05);
+}
+
+.alert-time {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    opacity: 0.6;
+}
+
+.alert-msg {
+    font-size: 0.9rem;
+}
+
+/* Chart */
+.chart-container {
+    height: 200px;
+    margin-top: 2rem;
+    position: relative;
+}
+
+.chart-bars {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 100%;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 10%;
+    height: 100%;
+    justify-content: flex-end;
+}
+
+.bar {
+    width: 100%;
+    background: linear-gradient(to top, var(--secondary-neon), var(--primary-neon));
+    border-radius: 4px 4px 0 0;
+    opacity: 0.8;
+    position: relative;
+    transition: height 1s ease;
+}
+
+.bar.future {
+    background: repeating-linear-gradient(45deg,
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0.1) 5px,
+            transparent 5px,
+            transparent 10px);
+    border: 1px dashed var(--success-neon);
+}
+
+.bar-label {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
+
+.prediction-overlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 8px;
+    border: 1px solid var(--success-neon);
+    border-radius: 4px;
+    color: var(--success-neon);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Dell/OneDrive/Desktop/GreenMind3/src/components/Diseases/DiseaseDetector.css">.disease-detector-container {
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    text-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
+}
+
+.title-icon {
+    color: var(--neon-blue);
+}
+
+.detector-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    flex: 1;
+}
+
+/* Upload Section */
+.upload-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    padding: 2rem;
+    border: 1px dashed rgba(78, 205, 196, 0.3);
+    transition: all 0.3s ease;
+}
+
+.upload-area {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 12px;
+}
+
+.upload-area:hover .upload-icon {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 15px var(--neon-blue));
+}
+
+.upload-placeholder {
+    text-align: center;
+}
+
+.upload-icon {
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.upload-placeholder h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-bright);
+}
+
+.upload-placeholder p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Image Preview */
+.image-preview-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.preview-image {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.remove-image-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--text-secondary);
+    color: var(--text-bright);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.remove-image-btn:hover {
+    background: var(--neon-danger);
+    border-color: var(--neon-danger);
+}
+
+.analyze-btn {
+    margin-top: 1.5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Scanning Animation */
+.scanning-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 20, 20, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.scanner-line {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue);
+    animation: scan 2s infinite linear;
+}
+
+@keyframes scan {
+    0% {
+        top: 0%;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+.scanning-text {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--neon-blue);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--neon-blue);
+    animation: pulse 1.5s infinite;
+}
+
+/* Results Section */
+.results-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.placeholder-panel {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.placeholder-icon {
+    margin-bottom: 1.5rem;
+    opacity: 0.5;
+}
+
+.supported-formats {
+    margin-top: 2rem;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1rem;
+}
+
+.result-card {
+    padding: 2rem;
+    height: 100%;
+    animation: slideIn 0.5s ease;
+    border-top: 4px solid transparent;
+}
+
+.result-card.danger {
+    border-color: var(--neon-danger);
+}
+
+.result-card.warning {
+    border-color: var(--neon-warning);
+}
+
+.result-card.safe {
+    border-color: var(--neon-success);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1.5rem;
+}
+
+.result-icon.danger {
+    color: var(--neon-danger);
+}
+
+.result-icon.warning {
+    color: var(--neon-warning);
+}
+
+.result-icon.success {
+    color: var(--neon-success);
+}
+
+.confidence-score {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.analysis-details h4 {
+    color: var(--text-bright);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.detail-item {
+    margin-bottom: 1.5rem;
+}
+
+.detail-item p {
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.reset-btn {
+    margin-top: auto;
+    width: 100%;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Dell/OneDrive/Desktop/GreenMind3/src/components/System/System.css">.system-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+}
+
+.settings-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.setting-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.setting-item label {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+}
+
+.neon-range {
+    width: 100%;
+    accent-color: var(--primary-neon);
+}
+
+.neon-select {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    padding: 8px;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+}
+
+.danger-zone {
+    border: 1px solid var(--error-neon);
+    box-shadow: 0 0 10px rgba(255, 0, 85, 0.1);
+}
+
+.danger-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--error-neon);
+    margin-bottom: 1rem;
+}
+
+.danger-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.danger-btn {
+    background: rgba(255, 0, 85, 0.1);
+    border: 1px solid var(--error-neon);
+    color: var(--error-neon);
+    padding: 10px;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.danger-btn:hover {
+    background: var(--error-neon);
+    color: #000;
+    box-shadow: 0 0 15px var(--error-neon);
+}</style></head>
+  <body data-new-gr-c-s-check-loaded="14.1267.0" data-gr-ext-installed="">
+    <div id="root"><div class="app-container"><aside class="sidebar glass-panel"><div class="logo-container"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-leaf logo-icon neon-text" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg><span class="logo-text">GreenMind<span class="logo-sub">AG</span></span></div><nav class="nav-menu"><button class="nav-item active"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></svg><span class="nav-label">Mission Control</span><div class="active-indicator"></div></button><button class="nav-item "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity" aria-hidden="true"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path></svg><span class="nav-label">Live Growth</span></button><button class="nav-item "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain" aria-hidden="true"><path d="M12 18V5"></path><path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4"></path><path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5"></path><path d="M17.997 5.125a4 4 0 0 1 2.526 5.77"></path><path d="M18 18a4 4 0 0 0 2-7.464"></path><path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517"></path><path d="M6 18a4 4 0 0 1-2-7.464"></path><path d="M6.003 5.125a4 4 0 0 0-2.526 5.77"></path></svg><span class="nav-label">AI Intelligence</span></button><button class="nav-item "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-scan" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path></svg><span class="nav-label">Bio-Scan</span></button><button class="nav-item "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings" aria-hidden="true"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"></path><circle cx="12" cy="12" r="3"></circle></svg><span class="nav-label">System Ops</span></button></nav><div class="sidebar-footer"><p>STATUS: <span class="status-ok">ONLINE</span></p><p>GRAVITY: 0.0G</p></div></aside><main class="main-content"><header class="top-bar glass-panel"><h2 class="page-title">Mission Control Center</h2><div class="time-display">T+ 424 Days : 12 : 30 : 05</div></header><div class="content-area"><div class="dashboard-container"><div class="dashboard-grid"><div class="metric-card glass-panel normal"><div class="metric-header"><span class="metric-title">Air Temperature</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-thermometer metric-icon" aria-hidden="true"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path></svg></div><div class="metric-body"><div class="metric-value">24.7<span class="metric-unit">°C</span></div><div class="metric-trend stable"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus" aria-hidden="true"><path d="M5 12h14"></path></svg></div></div><div class="metric-footer"><div class="status-indicator normal"></div><span class="status-text">NORMAL</span></div></div><div class="metric-card glass-panel normal"><div class="metric-header"><span class="metric-title">Relative Humidity</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-droplets metric-icon" aria-hidden="true"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"></path><path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"></path></svg></div><div class="metric-body"><div class="metric-value">65<span class="metric-unit">%</span></div><div class="metric-trend stable"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus" aria-hidden="true"><path d="M5 12h14"></path></svg></div></div><div class="metric-footer"><div class="status-indicator normal"></div><span class="status-text">NORMAL</span></div></div><div class="metric-card glass-panel normal"><div class="metric-header"><span class="metric-title">CO2 Levels</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wind metric-icon" aria-hidden="true"><path d="M12.8 19.6A2 2 0 1 0 14 16H2"></path><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"></path><path d="M9.8 4.4A2 2 0 1 1 11 8H2"></path></svg></div><div class="metric-body"><div class="metric-value">416<span class="metric-unit">ppm</span></div><div class="metric-trend up"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up" aria-hidden="true"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg></div></div><div class="metric-footer"><div class="status-indicator normal"></div><span class="status-text">NORMAL</span></div></div><div class="metric-card glass-panel normal"><div class="metric-header"><span class="metric-title">Nutrient Solution pH</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity metric-icon" aria-hidden="true"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path></svg></div><div class="metric-body"><div class="metric-value">6.2<span class="metric-unit">pH</span></div><div class="metric-trend down"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down" aria-hidden="true"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg></div></div><div class="metric-footer"><div class="status-indicator normal"></div><span class="status-text">NORMAL</span></div></div><div class="metric-card glass-panel normal"><div class="metric-header"><span class="metric-title">Micro-Gravity Env</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity metric-icon" aria-hidden="true"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path></svg></div><div class="metric-body"><div class="metric-value">0.00<span class="metric-unit">G</span></div><div class="metric-trend stable"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus" aria-hidden="true"><path d="M5 12h14"></path></svg></div></div><div class="metric-footer"><div class="status-indicator normal"></div><span class="status-text">NORMAL</span></div></div><div class="metric-card glass-panel normal"><div class="metric-header"><span class="metric-title">Power Output</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap metric-icon" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg></div><div class="metric-body"><div class="metric-value">98<span class="metric-unit">%</span></div><div class="metric-trend stable"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus" aria-hidden="true"><path d="M5 12h14"></path></svg></div></div><div class="metric-footer"><div class="status-indicator normal"></div><span class="status-text">NORMAL</span></div></div></div><div class="controls-section"><div class="glass-panel system-panel"><h3>Hydroponic System Control</h3><div class="control-group"><button class="control-btn start active"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-power" aria-hidden="true"><path d="M12 2v10"></path><path d="M18.4 6.6a9 9 0 1 1-12.77.04"></path></svg>Initialize System</button><button class="control-btn stop">Emergency Halt</button></div><div class="system-status-detail"><p>Pump Status: <span style="color: var(--success-neon);">ACTIVE</span></p><p>Light Cycle: DAY PHASE (14h remaining)</p></div></div><div class="glass-panel logs-panel"><h3>System Logs</h3><div class="system-log"><div class="log-entry"><span class="log-time">12:30:05</span> System check complete. All green.</div><div class="log-entry"><span class="log-time">12:29:42</span> Nutrient pump pressure stabilized.</div><div class="log-entry"><span class="log-time">12:28:15</span> Micro-gravity compensation active.</div><div class="log-entry"><span class="log-time">12:25:00</span> Data uplink established with Earth Station.</div></div></div></div></div></div></main></div></div>
+    <script type="module" src="./greenmind-anti-gravity_files/main.jsx"></script>
+  
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
